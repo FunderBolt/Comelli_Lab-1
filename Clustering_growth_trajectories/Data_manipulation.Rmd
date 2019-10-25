@@ -11,12 +11,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
-# Packages installment
-install.packages("dplyr")
-install.packages("plyr")
-install.packages("tidyverse")
-install.packages("sas7bdat")
-install.packages("ggplot")
+# Packages installment | make list of needed packages
+list.of.packages <- c("dplyr","plyr","tidyverse","sas7bdat","ggplot")
+
+# list any missing packages
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+
+# if packages missing --> install
+if(length(new.packages) > 0) {install.packages(new.packages,dependencies = TRUE)}
+
+lapply(list.of.packages, require, character.only = TRUE)
 ```
 
 
